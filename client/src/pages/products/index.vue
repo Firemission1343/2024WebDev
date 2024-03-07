@@ -1,8 +1,10 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { type Product, getProducts } from "@/model/products"
 
 const products =ref([] as Product[]);
+
+products.value = getProducts();
 
 type CartItem = {
     product: Product;
@@ -14,13 +16,18 @@ const cart = ref([] as CartItem[]);
 products.value = getProducts();
 
 function addToCart(product: Product) {
+
+
     const item = cart.value.find((item) => item.product.id === product.id);
+
     if (item) {
         item.quantity++;
     } else {
         cart.value.push({ product, quantity: 1 });
     }
 }
+
+const total = computed ( () => cart.value.reduce((total, item) => total + item.product.price * item.quantity, 0) );
 
 </script>
 
@@ -34,26 +41,26 @@ function addToCart(product: Product) {
         </div>
         <div class ="card-content">
             <h3>{{ product.title }}</h3>
+            <i>{{ product.brand }}</i>
             <p class="price">${{ product.price }}</p>
             <p >{{ product.description }}</p>
+
             <button @click="addToCart(product)" class="button is-primary">Add to Cart</button>
-
         </div>
-
     </div>
 </div>
+
 <div class="flyout">
-<h1 class="title">
-    The Cart
-</h1>
+    <h1 class="title">
+        The Cart
+    </h1>
 <ul class="cart">
     <li v-for="item in cart" :key="item.product.id">
         <img :src="item.product.thumbnail" :alt="item.product.title" />
-
         {{ item.product.title }} x {{ item.quantity }} = ${{ item.product.price * item.quantity }}
     </li>
 </ul>
-{{ cart.length }}items totalling $ {{ cart.reduce((total, item) => total + item.product.price * item.quantity, 0) }}
+{{ cart.length }} items totalling ${{ total }}
 
 </div>
 
