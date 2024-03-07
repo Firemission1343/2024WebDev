@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { type Product, getProducts } from "@/model/products.ts"
+import { type Product, getProducts } from "@/model/products"
 
 const products =ref([] as Product[]);
 
