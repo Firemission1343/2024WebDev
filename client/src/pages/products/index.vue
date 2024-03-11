@@ -20,19 +20,18 @@ const cart = ref([] as CartItem[]);
 
 products.value = getProducts();
 
-function addToCart(product: Product) {
+// function addToCart(product: Product) {
 
 
-    const item = cart.value.find((item) => item.product.id === product.id);
+//     const item = cart.value.find((item) => item.product.id === product.id);
 
-    if (item) {
-        item.quantity++;
-    } else {
-        cart.value.push({ product, quantity: 1 });
-    }
-}
+//     if (item) {
+//         item.quantity++;
+//     } else {
+//         cart.value.push({ product, quantity: 1 });
+//     }
+// }
 
-const total = computed ( () => cart.value.reduce((total, item) => total + item.product.price * item.quantity, 0) );
 
 </script>
 
@@ -45,7 +44,7 @@ const total = computed ( () => cart.value.reduce((total, item) => total + item.p
                 />
 </div>
 
-<div class="flyout">
+<!-- <div class="flyout">
     <h1 class="title">
         The Cart
     </h1>
@@ -58,7 +57,7 @@ const total = computed ( () => cart.value.reduce((total, item) => total + item.p
 </ul>
 {{ cart.length }} items totalling ${{ total }}
 
-</div>
+</div> -->
 <FlyOut :isOpen="isOpen" >
     <ShoppingCart />
 </FlyOut>
