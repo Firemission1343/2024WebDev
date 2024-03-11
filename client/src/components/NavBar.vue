@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router';
 import { ref } from 'vue';
+import{ isOpen, total } from '@/viewModel/cart';
+import { count } from '@/viewModel/cart';
+
 
 let isActive = ref(false);
 
@@ -60,6 +63,18 @@ function toggleMenu() {
       </div>
 
       <div class="navbar-end">
+
+        <div class="navbar-item">
+          <div class="buttons">
+            <button class="button" @click="isOpen =! isOpen">
+
+              <i class="fas fa-shopping-cart"></i>
+            <span class="tag is-primary">{{ count }}</span>
+            </button>
+  
+          </div>  
+        </div>
+
         <div class="navbar-item">
           <div class="buttons">
             <a class="button is-primary">
