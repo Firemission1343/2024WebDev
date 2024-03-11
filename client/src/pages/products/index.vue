@@ -2,6 +2,7 @@
 import { ref, computed } from 'vue'
 import { type Product, getProducts } from "@/model/products"
 import ProductCard from '@/components/ProductCard.vue';
+import FlyOut from '@/components/FlyOut.vue';
 
 const products =ref([] as Product[]);
 
@@ -41,11 +42,11 @@ const total = computed ( () => cart.value.reduce((total, item) => total + item.p
                 />
 </div>
 
-<div class="flyout">
+<FlyOut :is-open="false" >
     <h1 class="title">
         The Cart
     </h1>
-    
+
 <ul class="cart">
     <li v-for="item in cart" :key="item.product.id">
         <img :src="item.product.thumbnail" :alt="item.product.title" />
@@ -54,7 +55,7 @@ const total = computed ( () => cart.value.reduce((total, item) => total + item.p
 </ul>
 {{ cart.length }} items totalling ${{ total }}
 
-</div>
+</FlyOut>
 
 </template>
 
@@ -64,39 +65,7 @@ const total = computed ( () => cart.value.reduce((total, item) => total + item.p
     flex-wrap: wrap;
     justify-content: space-between;
 }
-.card {
-  flex-basis: 15rem;
-  flex-grow: 1;
-  margin: .5rem;
-}
-h3 {
-   font-weight: bold;
-}
-.price {
-    color: #00d1b2;
-    font-weight: bold;
-    font-size: xx-large;
-    float: right;
-}
 
-.flyout{
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 20rem;
-    height: 100%;
-    background-color: white;
-    border: 1px solid #ccc;
-    box-shadow: -1px 0 5px rgba(0,0,0,0.1);
-    z-index: 100;
-    transform: translateX(80%);
-    transition: transform 1s ease-in-out;
-    padding: 1rem;
-}
-
-.flyout.open, .flyout:hover {
-    transform: translateX(0);
-}
 
 .cart {
     list-style: none;
