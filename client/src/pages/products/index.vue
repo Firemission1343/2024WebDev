@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { type Product, getProducts } from "@/model/products"
+import ProductCard from '@/components/ProductCard.vue';
 
 const products =ref([] as Product[]);
 
@@ -34,26 +35,17 @@ const total = computed ( () => cart.value.reduce((total, item) => total + item.p
 <template>
 
 <div class="product-list">
-    <div v-for="product in products" :key="product.id" class="card" >
-        <div class="card-image">
-            <img :src="product.thumbnail" :alt="product.title">
-            
-        </div>
-        <div class ="card-content">
-            <h3>{{ product.title }}</h3>
-            <i>{{ product.brand }}</i>
-            <p class="price">${{ product.price }}</p>
-            <p >{{ product.description }}</p>
 
-            <button @click="addToCart(product)" class="button is-primary">Add to Cart</button>
-        </div>
-    </div>
+    <ProductCard v-for="product in products" :key="product.id" 
+                :product="product" @addToCart="addToCart"
+                />
 </div>
 
 <div class="flyout">
     <h1 class="title">
         The Cart
     </h1>
+    
 <ul class="cart">
     <li v-for="item in cart" :key="item.product.id">
         <img :src="item.product.thumbnail" :alt="item.product.title" />
