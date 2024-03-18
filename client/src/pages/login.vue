@@ -1,21 +1,21 @@
-<Script setup lang="ts">
-import LoginBadge from '@/components/LoginBadge.vue';
+<script setup lang="ts">
+    import LoginBadge from '@/components/LoginBadge.vue';
+    
+</script>
 
-</Script>
 
 
 
 
 <template>
-    <div class="hero">
+ <div class="hero">
         <div class="hero-body">
-            <h1 class="title">Login</h1>
-            <loginBadge />
-            
+            <div class="container">
+                <h1 class="title">You must log in to see that page</h1>
+                <LoginBadge />
+            </div>
         </div>
-
     </div>
-
 
 
 </template>

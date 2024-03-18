@@ -8,6 +8,7 @@ const session = reactive({
 
 export function useLogin() {
     const router = useRouter();
+
     return {
         login: (user: User) => {
             session.user = user;
@@ -23,14 +24,6 @@ export function useLogin() {
 
 
 
-// export function login(user: User) {
-//     session.user = user;
-// }
-
-// export function logout() {
-//     const router = useRouter();
-//     session.user = null;
-//     router.push("/login");
 
 
 

@@ -10,12 +10,11 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   const session = refSession()
-  if (['/login', '/register'].includes(to.path) && !session.user) {
-    next( '/login') 
+  if (!['/login', '/register'].includes(to.path) && !session.user) {
+    next('/login')
+  }else {
+    next()
   }
-
-  console.log('beforeEach', to, from)
-  next()
 })
 
 export default router

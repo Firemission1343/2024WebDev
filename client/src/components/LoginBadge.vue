@@ -20,7 +20,7 @@ logout();
         <div class="badge" v-if="session.user">
             <img :src="session.user.image" alt="avatar" />
             <div> 
-            {{ session.user.firstName }} {{ session.user.lastName}}
+            {{ session.user.firstName }} {{ session.user.lastName}} <br />
             {{ session.user.email }}
             </div>
             <div class="button is-danger is-link" @click.prevent="doLogout">
