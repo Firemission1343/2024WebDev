@@ -3,6 +3,7 @@ import { RouterLink } from 'vue-router';
 import { ref } from 'vue';
 import{ isOpen, total } from '@/viewModel/cart';
 import { count } from '@/viewModel/cart';
+import LoginBadge from './LoginBadge.vue';
 
 
 let isActive = ref(false);
@@ -76,12 +77,8 @@ function toggleMenu() {
         </div>
 
         <div class="navbar-item">
-          <div class="buttons">
-            <a class="button is-primary">
-              <strong>Sign up</strong>
-            </a>
-            <a class="button is-light"> Log in </a>
-          </div>
+          <LoginBadge />
+
         </div>
       </div>
     </div>

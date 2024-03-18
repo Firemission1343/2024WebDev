@@ -3,7 +3,6 @@ import { ref, computed } from 'vue'
 import { type Product, getProducts } from "@/model/products"
 import ProductCard from '@/components/ProductCard.vue';
 import FlyOut from '@/components/FlyOut.vue';
-
 import { addToCart, isOpen } from '@/viewModel/cart';
 import ShoppingCart from '@/components/ShoppingCart.vue';
 
@@ -20,18 +19,6 @@ const cart = ref([] as CartItem[]);
 
 products.value = getProducts();
 
-// function addToCart(product: Product) {
-
-
-//     const item = cart.value.find((item) => item.product.id === product.id);
-
-//     if (item) {
-//         item.quantity++;
-//     } else {
-//         cart.value.push({ product, quantity: 1 });
-//     }
-// }
-
 
 </script>
 
@@ -44,20 +31,6 @@ products.value = getProducts();
                 />
 </div>
 
-<!-- <div class="flyout">
-    <h1 class="title">
-        The Cart
-    </h1>
-    
-<ul class="cart">
-    <li v-for="item in cart" :key="item.product.id">
-        <img :src="item.product.thumbnail" :alt="item.product.title" />
-        {{ item.product.title }} x {{ item.quantity }} = ${{ item.product.price * item.quantity }}
-    </li>
-</ul>
-{{ cart.length }} items totalling ${{ total }}
-
-</div> -->
 <FlyOut :isOpen="isOpen" >
     <ShoppingCart />
 </FlyOut>
